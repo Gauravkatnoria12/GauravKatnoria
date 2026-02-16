@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>GauravKatnoria</title>
     <link rel="icon" type="images/x-icon" href="Fav.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -329,12 +329,12 @@
         }
 
         .hero h1 {
-            font-size: clamp(4rem, 10vw, 12rem);
-            font-weight: 300;
-            line-height: 0.95;
+            font-size: clamp(3.5rem, 10vw, 12rem);
+            font-weight: 700;
+            line-height: 1;
             letter-spacing: -0.03em;
-            margin-top: 2.2rem;
-            margin-bottom: 2.5rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
         }
 
         .hero h1 .line {
@@ -346,6 +346,15 @@
             display: inline-block;
             opacity: 0;
             transform: translateY(120%);
+            white-space: nowrap;
+        }
+
+        .hero h1 svg {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 0.5rem;
+            height: 1em;
+            width: 0.8em !important;
         }
 
         .hero h1 .line:nth-child(1) span {
@@ -376,7 +385,7 @@
         }
 
         .hero-description {
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-size: clamp(1rem, 2vw, 1.5rem);
             line-height: 1.6;
             max-width: 700px;
             color: var(--accent);
@@ -954,6 +963,13 @@
 
             .hero h1 {
                 font-size: clamp(3rem, 10vw, 4rem);
+                line-height: 1.2;
+            }
+
+            .hero h1 svg {
+                height: 0.8em;
+                width: 0.8em !important;
+                margin: 0 0.2rem;
             }
 
             .hero-label {
@@ -977,6 +993,13 @@
             }
         }
 
+        @media (max-width: 405px) {
+            .hero h1 svg {
+                display: block !important;
+                margin: 0.5rem 0;
+            }
+        }
+
         :root {
             --hosh-bg: #0c0a09;
             --hosh-accent: #f5f5dc;
@@ -997,7 +1020,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Space Mono', monospace;
-            padding: 2rem;
+            padding: 1.5rem;
             box-sizing: border-box;
         }
 
@@ -1014,7 +1037,7 @@
             font-weight: 400;
             letter-spacing: -0.02em;
             display: inline-block;
-            min-height: 1.2em;
+            min-height: 1em;
             word-break: break-word;
             /* Prevents long phrases from breaking the box */
         }
@@ -1085,7 +1108,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Space Mono', monospace;
-            padding: 2rem;
+            padding: 1.5rem;
             box-sizing: border-box;
             container-type: inline-size;
         }
@@ -1101,7 +1124,7 @@
             font-weight: 400;
             letter-spacing: -0.02em;
             display: inline-block;
-            min-height: 1.2em;
+            min-height: 1em;
             word-break: break-word;
         }
 
@@ -1165,7 +1188,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Space Mono', monospace;
-            padding: 2rem;
+            padding: 1.5rem;
             box-sizing: border-box;
             container-type: inline-size;
         }
@@ -1181,7 +1204,7 @@
             font-weight: 400;
             letter-spacing: -0.02em;
             display: inline-block;
-            min-height: 1.2em;
+            min-height: 1em;
             word-break: break-word;
         }
 
@@ -1297,7 +1320,25 @@
         <div class="hero-content">
             <span class="hero-label">Creative Developer & Designer</span>
             <h1>
-                <span class="line"><span>Crafting Digital</span></span>
+                <span class="line"><span>Crafting Digital
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 200 200"
+                        width="40"
+                        height="40">
+                    <polygon
+                        points="
+                        100,0
+                        112,86
+                        200,100
+                        112,114
+                        100,200
+                        88,114
+                        0,100
+                        88,86
+                        "
+                        fill="var(--accent)"/>
+                    </svg>
+                </span></span>
                 <span class="line"><span>Experiences</span></span>
             </h1>
             <p class="hero-description">
@@ -1765,7 +1806,7 @@
         document.addEventListener('DOMContentLoaded', type);
 
         const gwTextDisplay = document.getElementById('gw-typing-target');
-        const gwPhraseList = ["Techspace", "workspace"];
+        const gwPhraseList = ["Techspace", "Workspace"];
 
         let gwCurrentPhraseIdx = 0;
         let gwCurrentCharIdx = 0;
