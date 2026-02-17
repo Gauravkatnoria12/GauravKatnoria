@@ -579,7 +579,7 @@
 
         .work-image {
             position: relative;
-            aspect-ratio: 1/1;
+            aspect-ratio: 4/3;
             overflow: hidden;
             background: linear-gradient(135deg, #2C2416 0%, #1A1612 100%);
             cursor: pointer;
@@ -1008,88 +1008,7 @@
         }
 
 
-        .card {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            flex-direction: column;
-            padding: clamp(1.5rem, 8%, 3rem);
-            color: #1a1a1a;
-            /* Global dark text for light theme cards */
-            box-sizing: border-box;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            container-type: inline-size;
-            transition: transform 0.2s ease;
-        }
-
-        /* Color Themes */
-        .card-cream {
-            background-color: #fdf5e6;
-        }
-
-        .card-light-purple {
-            background-color: #fdf5e6;
-        }
-
-        .card-light-red {
-            background-color: #fdf5e6;
-        }
-
-        /* Soft light red for Techspace */
-
-        /* Middle section - Graphic container */
-        .graphic-wrapper {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 0;
-            padding: 5% 0;
-            z-index: 5;
-        }
-
-        .abstract-svg {
-            height: 100%;
-            width: auto;
-            max-width: 85%;
-            object-fit: contain;
-        }
-
-        /* Bottom section - Text */
-        .card-footer {
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            z-index: 10;
-        }
-
-        .main-title {
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-size: clamp(1.2rem, 13.5cqi, 4.8rem);
-            line-height: 0.85;
-            letter-spacing: -0.05em;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        /* Icon Styling */
-        .icon-footer {
-            display: flex;
-            justify-content: center;
-            margin-top: clamp(1rem, 4cqi, 2rem);
-        }
-
-        .chevron {
-            width: clamp(8px, 3cqi, 12px);
-            height: clamp(8px, 3cqi, 12px);
-            border-left: 2.5px solid #1a1a1a;
-            border-top: 2.5px solid #1a1a1a;
-            transform: rotate(45deg);
-            opacity: 0.6;
-        }
+        
 
         #matrix-stage {
             position: relative;
@@ -1121,6 +1040,117 @@
             background-image: url('https://grainy-gradients.vercel.app/noise.svg');
             z-index: 2;
         }
+
+
+
+          :root {
+            /* Video-matched colors */
+            --bg-base: #1a1a1a;
+            --chevron-color: #262626;
+            --cream: #f5f5dc;
+            --dot-color: rgba(255, 255, 255, 0.05);
+        }
+
+
+        /* Container Queries allow the text to scale based on the DIV size, not just the window size */
+        .wrapper {
+            container-type: inline-size;
+            width: 100%;
+            height: 100%;
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: var(--bg-base);
+        }
+
+        .responsive-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Background Layer with Video Pattern */
+        .video-bg {
+            position: absolute;
+            top: -50%;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            background: 
+                radial-gradient(var(--dot-color) 1px, transparent 1px),
+                linear-gradient(135deg, var(--chevron-color) 25%, transparent 25%) -50px 0,
+                linear-gradient(225deg, var(--chevron-color) 25%, transparent 25%) -50px 0,
+                linear-gradient(315deg, var(--chevron-color) 25%, transparent 25%),
+                linear-gradient(45deg, var(--chevron-color) 25%, transparent 25%);
+            background-size: 4px 4px, 100px 100px, 100px 100px, 100px 100px, 100px 100px;
+            animation: moveDown 10s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes moveDown {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100px); }
+        }
+
+        .vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
+            z-index: 2;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 5cqw; /* Padding scales with container width */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .city-name {
+            color: var(--cream);
+            font-family: 'Cormorant Garamond', serif;
+            /* cqw = container query width. This makes font size relative to the div width */
+            font-size: 14cqw; 
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin: 0;
+            text-transform: uppercase;
+            line-height: 0.9;
+            text-shadow: 0 1cqw 3cqw rgba(0,0,0,0.5);
+            white-space: nowrap;
+        }
+
+        .tagline {
+            color: var(--cream);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5cqw;
+            font-weight: 300;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-top: 2cqw;
+            padding-left: 0.5em;
+            white-space: nowrap;
+        }
+
+        .divider {
+            width: 15cqw;
+            height: 1px;
+            background-color: var(--cream);
+            margin: 3cqw auto;
+            opacity: 0.6;
+        }
+
     </style>
 </head>
 
@@ -1219,35 +1249,20 @@
                 <div class="work-image">
                     <div class="work-image-inner">
                         <div class="image-placeholder">
-                            <div class="card card-cream">
-                                <div class="graphic-wrapper">
-                                    <svg class="abstract-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <defs>
-                                            <clipPath id="techClipH">
-                                                <rect x="40" y="40" width="120" height="120" rx="15" />
-                                            </clipPath>
-                                        </defs>
-                                        <rect x="40" y="40" width="120" height="120" rx="15" fill="#e2d8c3" />
-                                        <g clip-path="url(#techClipH)">
-                                            <rect x="40" y="40" width="60" height="60" fill="#059669" />
-                                            <rect x="100" y="100" width="60" height="60" fill="#059669" />
-                                            <path d="M40,100 L160,100 M100,40 L100,160" stroke="#1a1a1a"
-                                                stroke-width="0.5" opacity="0.2" />
-                                            <circle cx="100" cy="100" r="30" fill="#b45309" opacity="0.9" />
-                                            <path d="M80,80 L120,120 M120,80 L80,120" stroke="white" stroke-width="2.5"
-                                                stroke-linecap="round" />
-                                        </g>
-                                        <circle cx="160" cy="40" r="8" fill="#059669" />
-                                        <circle cx="40" cy="160" r="5" fill="#b45309" />
-                                    </svg>
-                                </div>
-                                <div class="card-footer">
-                                    <h1 class="main-title">Hoshiarpur<br>City</h1>
-                                    <div class="icon-footer">
-                                        <div class="chevron"></div>
+                            
+                            <div class="wrapper">
+                                <div class="responsive-container">
+                                    <div class="video-bg"></div>
+                                    <div class="vignette"></div>
+
+                                    <div class="content">
+                                        <h1 class="city-name">Hoshiarpur</h1>
+                                        <div class="divider"></div>
+                                        <p class="tagline">City Site</p>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
             </article>
@@ -1271,31 +1286,20 @@
                 <div class="work-image">
                     <div class="work-image-inner">
                         <div class="image-placeholder">
-                            <div class="card card-light-purple">
-                                <div class="graphic-wrapper">
-                                    <svg class="abstract-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <defs>
-                                            <clipPath id="shape2">
-                                                <path d="M50,50 Q150,20 170,100 Q190,180 100,170 Q20,160 50,50 Z" />
-                                            </clipPath>
-                                        </defs>
-                                        <path d="M50,50 Q150,20 170,100 Q190,180 100,170 Q20,160 50,50 Z"
-                                            fill="#ff6b6b" />
-                                        <g clip-path="url(#shape2)">
-                                            <rect x="50" y="50" width="50" height="50" fill="#ffcc33" />
-                                            <rect x="100" y="100" width="50" height="50" fill="#ffcc33" />
-                                            <rect x="100" y="50" width="50" height="50" fill="#6366f1" />
-                                            <rect x="50" y="100" width="50" height="50" fill="#6366f1" />
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div class="card-footer">
-                                    <h1 class="main-title" style="letter-spacing: -0.02em;">RBPU<br>Hsp<br>Punjab</h1>
-                                    <div class="icon-footer">
-                                        <div class="chevron"></div>
+                            
+                            <div class="wrapper">
+                                <div class="responsive-container">
+                                    <div class="video-bg"></div>
+                                    <div class="vignette"></div>
+
+                                    <div class="content">
+                                        <h1 class="city-name">RBPU HSP</h1>
+                                        <div class="divider"></div>
+                                        <p class="tagline">College Site</p>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -1320,31 +1324,20 @@
                 <div class="work-image">
                     <div class="work-image-inner">
                         <div class="image-placeholder">
-                            <div class="card card-light-red">
-                                <div class="graphic-wrapper">
-                                    <svg class="abstract-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <defs>
-                                            <clipPath id="shape3">
-                                                <rect x="40" y="40" width="120" height="120" rx="20" />
-                                            </clipPath>
-                                        </defs>
-                                        <rect x="40" y="40" width="120" height="120" rx="20" fill="#fecaca" />
-                                        <g clip-path="url(#shape3)">
-                                            <rect x="40" y="40" width="60" height="60" fill="#ef4444" />
-                                            <rect x="100" y="100" width="60" height="60" fill="#ef4444" />
-                                            <circle cx="100" cy="100" r="40" fill="#f43f5e" opacity="0.8" />
-                                        </g>
-                                        <path d="M60,60 L140,140 M140,60 L60,140" stroke="#1a1a1a" stroke-width="2"
-                                            opacity="0.1" />
-                                    </svg>
-                                </div>
-                                <div class="card-footer">
-                                    <h1 class="main-title">Techspace<br>A Work<br>Space</h1>
-                                    <div class="icon-footer">
-                                        <div class="chevron"></div>
+
+                            <div class="wrapper">
+                                <div class="responsive-container">
+                                    <div class="video-bg"></div>
+                                    <div class="vignette"></div>
+
+                                    <div class="content">
+                                        <h1 class="city-name">Techspace</h1>
+                                        <div class="divider"></div>
+                                        <p class="tagline">Workspace</p>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
