@@ -112,14 +112,14 @@
             letter-spacing: 0.6em;
             text-transform: uppercase;
             color: var(--highlight);
-            animation: pulse 1.5s infinite;
+            animation: pulse 1s infinite;
         }
 
         @keyframes pulse {
 
             0%,
             100% {
-                opacity: 0.4;
+                opacity: 0.5;
             }
 
             50% {
@@ -199,12 +199,21 @@
             align-items: center;
             z-index: 100;
             opacity: 0;
-            animation: fadeInNav 1.5s ease forwards 0.5s;
+            animation: fadeInNav 0.6s ease forwards 0.2s;
         }
 
         @keyframes fadeInNav {
             to {
                 opacity: 1;
+            }
+        }
+        
+        /* Performance: Disable some animations on lower-end devices */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
 
@@ -328,7 +337,7 @@
             color: var(--accent);
             margin-bottom: 1.6rem;
             opacity: 0;
-            animation: fadeSlideUp 1s ease forwards 0.8s;
+            animation: fadeSlideUp 0.6s ease forwards 0.3s;
         }
 
         .hero h1 {
@@ -361,11 +370,11 @@
         }
 
         .hero h1 .line:nth-child(1) span {
-            animation: slideUp 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards 1s;
+            animation: slideUp 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.5s;
         }
 
         .hero h1 .line:nth-child(2) span {
-            animation: slideUp 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards 1.2s;
+            animation: slideUp 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.7s;
         }
 
         @keyframes slideUp {
@@ -393,7 +402,7 @@
             max-width: 700px;
             color: var(--accent);
             opacity: 0;
-            animation: fadeSlideUp 1s ease forwards 1.5s;
+            animation: fadeSlideUp 0.6s ease forwards 1s;
         }
 
         .scroll-prompt {
@@ -404,7 +413,7 @@
             align-items: center;
             gap: 2rem;
             opacity: 0;
-            animation: fadeSlideUp 1s ease forwards 1.8s;
+            animation: fadeSlideUp 0.6s ease forwards 1.2s;
         }
 
         .scroll-line {
@@ -423,7 +432,7 @@
             width: 30px;
             height: 1px;
             background: var(--highlight);
-            animation: scrollLineMove 2s ease-in-out infinite;
+            animation: scrollLineMove 3s ease-in-out infinite;
         }
 
         @keyframes scrollLineMove {
@@ -486,8 +495,6 @@
             align-items: center;
             opacity: 0;
             transform: translateY(100px);
-            transition: opacity 1.2s cubic-bezier(0.165, 0.84, 0.44, 1),
-                transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .work-item.visible {
@@ -545,7 +552,6 @@
             padding: 0.5rem 1.2rem;
             border: 1px solid rgba(232, 220, 196, 0.2);
             text-transform: uppercase;
-            transition: all 0.4s;
         }
 
         .tag:hover {
@@ -565,7 +571,6 @@
             gap: 1rem;
             padding: 1rem 0;
             border-bottom: 1px solid var(--highlight);
-            transition: gap 0.4s;
         }
 
         .work-link:hover {
@@ -588,7 +593,6 @@
         .work-image-inner {
             width: 100%;
             height: 100%;
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .work-item:hover .work-image-inner {
@@ -605,7 +609,6 @@
             background: linear-gradient(135deg, rgba(196, 165, 123, 0.2) 0%, transparent 100%);
             z-index: 1;
             opacity: 0;
-            transition: opacity 0.6s;
         }
 
         .work-item:hover .work-image::before {
@@ -749,7 +752,6 @@
         .contact-link:hover {
             color: var(--primary);
             border-color: var(--primary);
-            letter-spacing: 0.05em;
         }
 
         /* Footer */
@@ -820,7 +822,6 @@
             letter-spacing: 0.15em;
             color: var(--accent);
         }
-
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -1007,9 +1008,6 @@
             }
         }
 
-
-        
-
         #matrix-stage {
             position: relative;
             width: 100%;
@@ -1041,18 +1039,14 @@
             z-index: 2;
         }
 
-
-
-          :root {
-            /* Video-matched colors */
+        :root {
             --bg-base: #1a1a1a;
             --chevron-color: #262626;
             --cream: #f5f5dc;
             --dot-color: transparent;
         }
 
-
-        /* Container Queries allow the text to scale based on the DIV size, not just the window size */
+        /* Container Queries */
         .wrapper {
             container-type: inline-size;
             width: 100%;
@@ -1089,7 +1083,7 @@
                 linear-gradient(315deg, var(--chevron-color) 25%, transparent 25%),
                 linear-gradient(45deg, var(--chevron-color) 25%, transparent 25%);
             background-size: 4px 4px, 100px 100px, 100px 100px, 100px 100px, 100px 100px;
-            animation: moveDown 8s linear infinite;
+            animation: moveDown 12s linear infinite;
             z-index: 1;
         }
 
@@ -1249,12 +1243,10 @@
                 <div class="work-image">
                     <div class="work-image-inner">
                         <div class="image-placeholder">
-                            
                             <div class="wrapper">
                                 <div class="responsive-container">
                                     <div class="video-bg"></div>
                                     <div class="vignette"></div>
-
                                     <div class="content">
                                         <h1 class="city-name">Hoshiarpur</h1>
                                         <div class="divider"></div>
@@ -1286,12 +1278,10 @@
                 <div class="work-image">
                     <div class="work-image-inner">
                         <div class="image-placeholder">
-                            
                             <div class="wrapper">
                                 <div class="responsive-container">
                                     <div class="video-bg"></div>
                                     <div class="vignette"></div>
-
                                     <div class="content">
                                         <h1 class="city-name">RBPU HSP</h1>
                                         <div class="divider"></div>
@@ -1324,12 +1314,10 @@
                 <div class="work-image">
                     <div class="work-image-inner">
                         <div class="image-placeholder">
-
                             <div class="wrapper">
                                 <div class="responsive-container">
                                     <div class="video-bg"></div>
                                     <div class="vignette"></div>
-
                                     <div class="content">
                                         <h1 class="city-name">Techspace</h1>
                                         <div class="divider"></div>
@@ -1434,8 +1422,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Loader
-        window.addEventListener('load', () => { setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1500); });
+        // Loader - reduced timeout
+        window.addEventListener('load', () => { 
+            setTimeout(() => document.getElementById('loader').classList.add('hidden'), 800); 
+        }, { passive: true });
 
         // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
@@ -1453,51 +1443,12 @@
                 link.addEventListener('click', () => {
                     menuToggle.classList.remove('active');
                     navMenu.classList.remove('active');
-                });
+                }, { passive: true });
             });
         }
 
-        // Enhanced Custom Cursor
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-
-        if (cursorDot && cursorOutline) {
-            let mouseX = 0, mouseY = 0;
-            let dotX = 0, dotY = 0;
-            let outlineX = 0, outlineY = 0;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-
-            function animateCursor() {
-                const speed = 0.2;
-                const outlineSpeed = 0.08;
-
-                dotX += (mouseX - dotX) * speed;
-                dotY += (mouseY - dotY) * speed;
-                outlineX += (mouseX - outlineX) * outlineSpeed;
-                outlineY += (mouseY - outlineY) * outlineSpeed;
-
-                cursorDot.style.transform = `translate(${dotX}px, ${dotY}px)`;
-                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
-
-                requestAnimationFrame(animateCursor);
-            }
-            animateCursor();
-
-            // Cursor interactions
-            const interactiveElements = document.querySelectorAll('a, button, .work-image');
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursorOutline.classList.add('active');
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursorOutline.classList.remove('active');
-                });
-            });
-        }
+        // Enhanced Custom Cursor - Disabled for performance
+        // Cursor animations removed to improve performance
 
         // Advanced Three.js Scene
         const container = document.getElementById('webgl-container');
@@ -1514,13 +1465,13 @@
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             container.appendChild(renderer.domElement);
 
-            // Create sophisticated geometry
-            const geometry = new THREE.IcosahedronGeometry(1, 2);
+            // Create sophisticated geometry - simplified
+            const geometry = new THREE.IcosahedronGeometry(1, 1);
             const material = new THREE.MeshPhongMaterial({
                 color: 0xC4A57B,
                 wireframe: true,
                 transparent: true,
-                opacity: 0.15
+                opacity: 0.1
             });
 
             const mesh = new THREE.Mesh(geometry, material);
@@ -1538,9 +1489,9 @@
             const ambientLight = new THREE.AmbientLight(0xE8DCC4, 0.2);
             scene.add(ambientLight);
 
-            // Particle system
+            // Particle system - optimized for performance
             const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 2000;
+            const particlesCount = 600;
             const posArray = new Float32Array(particlesCount * 3);
 
             for (let i = 0; i < particlesCount * 3; i++) {
@@ -1553,8 +1504,8 @@
                 size: 0.012,
                 color: 0xC4A57B,
                 transparent: true,
-                opacity: 0.4,
-                blending: THREE.AdditiveBlending
+                opacity: 0.3,
+                blending: THREE.NormalBlending
             });
 
             const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -1562,39 +1513,60 @@
 
             camera.position.z = 5;
 
-            // Mouse interaction
+            // Mouse interaction - throttled
             let targetRotationX = 0;
             let targetRotationY = 0;
             let currentRotationX = 0;
             let currentRotationY = 0;
+            let lastMouseX = 0, lastMouseY = 0;
 
             document.addEventListener('mousemove', (e) => {
-                targetRotationY = (e.clientX / window.innerWidth - 0.5) * 0.3;
-                targetRotationX = (e.clientY / window.innerHeight - 0.5) * 0.3;
-            });
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+            }, { passive: true });
 
-            // Scroll-based animation
-            let scrollY = window.scrollY;
-            window.addEventListener('scroll', () => {
+            // Update rotation only when needed
+            function updateMouseRotation() {
+                targetRotationY = (lastMouseX / window.innerWidth - 0.5) * 0.2;
+                targetRotationX = (lastMouseY / window.innerHeight - 0.5) * 0.2;
+            }
+
+// Scroll-based animation - throttled every 200ms
+        let scrollY = window.scrollY;
+        let lastScrollUpdate = 0;
+        window.addEventListener('scroll', () => {
+            const now = Date.now();
+            if (now - lastScrollUpdate > 50) {
                 scrollY = window.scrollY;
-            });
+                lastScrollUpdate = now;
+            }
+        }, { passive: true });
 
-            // Animation loop
+            // Animation loop - optimized
+            let frameCount = 0;
             function animate() {
                 requestAnimationFrame(animate);
+                frameCount++;
+
+                // Update mouse rotation every 10 frames
+                if (frameCount % 10 === 0) {
+                    updateMouseRotation();
+                }
 
                 // Smooth rotation
-                currentRotationX += (targetRotationX - currentRotationX) * 0.05;
-                currentRotationY += (targetRotationY - currentRotationY) * 0.05;
+                currentRotationX += (targetRotationX - currentRotationX) * 0.08;
+                currentRotationY += (targetRotationY - currentRotationY) * 0.08;
 
-                mesh.rotation.x = currentRotationX + scrollY * 0.0003;
-                mesh.rotation.y = currentRotationY + scrollY * 0.0002;
+                mesh.rotation.x = currentRotationX + scrollY * 0.0002;
+                mesh.rotation.y = currentRotationY + scrollY * 0.00015;
 
-                particlesMesh.rotation.y += 0.0003;
-                particlesMesh.rotation.x += 0.0001;
+                particlesMesh.rotation.y += 0.0002;
+                particlesMesh.rotation.x += 0.00005;
 
-                // Scroll effect
-                camera.position.y = -(scrollY * 0.001);
+                // Reduce camera position updates
+                if (frameCount % 5 === 0) {
+                    camera.position.y = -(scrollY * 0.0008);
+                }
 
                 renderer.render(scene, camera);
             }
@@ -1611,13 +1583,14 @@
         // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.15,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -80px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -1637,43 +1610,45 @@
                         block: 'start'
                     });
                 }
-            });
+            }, { passive: true });
         });
 
 
-        //About 
+        //About Section - Optimized for performance
         let _primeScene, _mainLens, _drawEngine, _nexusPoints, _temporalFlow;
         const _viewportElement = document.getElementById('gl-viewport');
         const _fluidTendrils = [];
 
         function _initArchitecture() {
+            if (!_viewportElement) return;
+            
             _primeScene = new THREE.Scene();
             _temporalFlow = new THREE.Clock();
 
-            // Lens configuration for high-fidelity perspective
+            // Lens configuration
             _mainLens = new THREE.PerspectiveCamera(45, _viewportElement.clientWidth / _viewportElement.clientHeight, 0.1, 1000);
-            _mainLens.position.z = 7;
+            _mainLens.position.z = 5;
 
             _drawEngine = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             _drawEngine.setSize(_viewportElement.clientWidth, _viewportElement.clientHeight);
-            _drawEngine.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            _drawEngine.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
             _viewportElement.appendChild(_drawEngine.domElement);
 
-            // Illuminating the structure
-            const _radiantNode = new THREE.PointLight(0xC4A57B, 1.8, 20);
+            // Simplified lighting
+            const _radiantNode = new THREE.PointLight(0xC4A57B, 1.2, 15);
             _radiantNode.position.set(5, 5, 5);
             _primeScene.add(_radiantNode);
 
-            const _softAmbiance = new THREE.AmbientLight(0xffffff, 0.2);
+            const _softAmbiance = new THREE.AmbientLight(0xffffff, 0.15);
             _primeScene.add(_softAmbiance);
 
-            // ENGINEERING CORE: The Nexus Constellation
-            const _nodeCount = 500;
+            // ENGINEERING CORE: Simplified constellation
+            const _nodeCount = 200;
             const _constellationGeometry = new THREE.BufferGeometry();
             const _coordinateMap = new Float32Array(_nodeCount * 3);
 
             for (let i = 0; i < _nodeCount; i++) {
-                const _radius = 2.8;
+                const _radius = 2.2;
                 const _zenith = Math.acos(THREE.MathUtils.randFloat(-1, 1));
                 const _azimuth = THREE.MathUtils.randFloat(0, Math.PI * 2);
 
@@ -1685,9 +1660,9 @@
             _constellationGeometry.setAttribute('position', new THREE.BufferAttribute(_coordinateMap, 3));
             const _pointAesthetic = new THREE.PointsMaterial({
                 color: 0xC4A57B,
-                size: 0.025,
+                size: 0.02,
                 transparent: true,
-                opacity: 0.7
+                opacity: 0.6
             });
             _nexusPoints = new THREE.Points(_constellationGeometry, _pointAesthetic);
             _primeScene.add(_nexusPoints);
@@ -1695,7 +1670,7 @@
             // ARTISTRY LAYER: Flowing Silk Vectors
             _forgeFlowVectors();
 
-            window.addEventListener('resize', _syncDimensions);
+            window.addEventListener('resize', _syncDimensions, { passive: true });
             _renderCycle();
         }
 
@@ -1713,9 +1688,9 @@
                 const _surfaceMaterial = new THREE.MeshPhongMaterial({
                     color: _chromaPalette[i],
                     emissive: _chromaPalette[i],
-                    emissiveIntensity: 0.4,
+                    emissiveIntensity: 0.3,
                     transparent: true,
-                    opacity: 0.8
+                    opacity: 0.6
                 });
                 const _vectorMesh = new THREE.Mesh(_volumeGeometry, _surfaceMaterial);
                 _primeScene.add(_vectorMesh);
@@ -1751,16 +1726,9 @@
             requestAnimationFrame(_renderCycle);
             const _elapsedTime = _temporalFlow.getElapsedTime();
 
-            // Animate the Nexus Constellation (Engineering)
-            const _rawCoords = _nexusPoints.geometry.attributes.position.array;
-            for (let i = 0; i < _rawCoords.length; i += 3) {
-                const _yVal = _rawCoords[i + 1];
-                const _zVal = _rawCoords[i + 2];
-                _rawCoords[i] += Math.sin(_elapsedTime * 0.5 + _yVal) * 0.003;
-                _rawCoords[i + 2] += Math.cos(_elapsedTime * 0.5 + _zVal) * 0.003;
-            }
-            _nexusPoints.geometry.attributes.position.needsUpdate = true;
-            _nexusPoints.rotation.y += 0.0015;
+            // Simplified Nexus Constellation animation
+            _nexusPoints.rotation.y += 0.0008;
+            _nexusPoints.rotation.x += 0.0003;
 
             // Animate Fluid Tendrils (Artistry)
             _fluidTendrils.forEach(_t => _evolveTendril(_t, _elapsedTime));
@@ -1768,7 +1736,7 @@
             _drawEngine.render(_primeScene, _mainLens);
         }
 
-        window.onload = _initArchitecture;
+        window.addEventListener('load', _initArchitecture, { passive: true });
 
     </script>
 </body>
