@@ -3,19 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GauravKatnoria</title>
-    <link rel="icon" type="images/x-icon" href="Fav.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="Fav.png">
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
-
         :root {
             --primary: #E8DCC4;
             --accent: #9B8B7E;
@@ -112,14 +109,14 @@
             letter-spacing: 0.6em;
             text-transform: uppercase;
             color: var(--highlight);
-            animation: pulse 1s infinite;
+            animation: pulse 1.5s infinite;
         }
 
         @keyframes pulse {
 
             0%,
             100% {
-                opacity: 0.5;
+                opacity: 0.4;
             }
 
             50% {
@@ -199,21 +196,12 @@
             align-items: center;
             z-index: 100;
             opacity: 0;
-            animation: fadeInNav 0.6s ease forwards 0.2s;
+            animation: fadeInNav 1.5s ease forwards 0.5s;
         }
 
         @keyframes fadeInNav {
             to {
                 opacity: 1;
-            }
-        }
-        
-        /* Performance: Disable some animations on lower-end devices */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
             }
         }
 
@@ -342,7 +330,7 @@
 
         .hero h1 {
             font-size: clamp(3.5rem, 10vw, 12rem);
-            font-weight: 700;
+            font-weight: 500;
             line-height: 1;
             letter-spacing: -0.03em;
             margin-top: 1rem;
@@ -413,7 +401,7 @@
             align-items: center;
             gap: 2rem;
             opacity: 0;
-            animation: fadeSlideUp 0.6s ease forwards 1.2s;
+            animation: fadeSlideUp 1s ease forwards 1.8s;
         }
 
         .scroll-line {
@@ -432,7 +420,7 @@
             width: 30px;
             height: 1px;
             background: var(--highlight);
-            animation: scrollLineMove 3s ease-in-out infinite;
+            animation: scrollLineMove 2s ease-in-out infinite;
         }
 
         @keyframes scrollLineMove {
@@ -495,6 +483,8 @@
             align-items: center;
             opacity: 0;
             transform: translateY(100px);
+            transition: opacity 1.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+                transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .work-item.visible {
@@ -552,6 +542,7 @@
             padding: 0.5rem 1.2rem;
             border: 1px solid rgba(232, 220, 196, 0.2);
             text-transform: uppercase;
+            transition: all 0.4s;
         }
 
         .tag:hover {
@@ -571,6 +562,7 @@
             gap: 1rem;
             padding: 1rem 0;
             border-bottom: 1px solid var(--highlight);
+            transition: gap 0.4s;
         }
 
         .work-link:hover {
@@ -587,12 +579,15 @@
             aspect-ratio: 4/3;
             overflow: hidden;
             background: linear-gradient(135deg, #2C2416 0%, #1A1612 100%);
+            border: 1px solid rgba(249, 244, 215, 0.127);
+            border-radius: 2px;
             cursor: pointer;
         }
 
         .work-image-inner {
             width: 100%;
             height: 100%;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .work-item:hover .work-image-inner {
@@ -609,6 +604,7 @@
             background: linear-gradient(135deg, rgba(196, 165, 123, 0.2) 0%, transparent 100%);
             z-index: 1;
             opacity: 0;
+            transition: opacity 0.6s;
         }
 
         .work-item:hover .work-image::before {
@@ -752,6 +748,7 @@
         .contact-link:hover {
             color: var(--primary);
             border-color: var(--primary);
+            letter-spacing: 0.05em;
         }
 
         /* Footer */
@@ -822,6 +819,7 @@
             letter-spacing: 0.15em;
             color: var(--accent);
         }
+
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -908,16 +906,16 @@
                 font-size: 1.2rem;
             }
 
-            .hero h1 svg {
-                vertical-align: middle;
-            }
-
             .hero,
             .featured,
             .about,
             .contact {
                 padding-left: 6vw;
                 padding-right: 6vw;
+            }
+
+            .hero h1 svg {
+                vertical-align: middle;
             }
 
             .section-header {
@@ -971,17 +969,16 @@
 
             .hero h1 {
                 font-size: clamp(3rem, 10vw, 4rem);
-                line-height: 1.2;
+            }
+
+            .hero-label {
+                margin-top: 0;
             }
 
             .hero h1 svg {
                 height: 0.8em;
                 width: 0.8em !important;
                 margin: 0 0.2rem;
-            }
-
-            .hero-label {
-                margin-top: 0;
             }
 
             .scroll-prompt {
@@ -996,16 +993,195 @@
                 font-size: clamp(2rem, 6vw, 2.5rem);
             }
 
+            .gw-header-meta, .rbpu-top-bar , .status-bar {
+              margin-bottom: 0.2rem;
+            }
+
             .stat-number {
                 font-size: 2.5rem;
             }
         }
 
-        @media (max-width: 405px) {
-            .hero h1 svg {
-                display: block !important;
-                margin: 0.5rem 0;
-            }
+        :root {
+            --hosh-bg: #0c0a09;
+            --hosh-accent: #f5f5dc;
+            --hosh-text: #e7d7c1;
+            --hosh-dim: #78716c;
+            --hosh-line: #44403c;
+        }
+
+        /* Adjusted to fill its parent container entirely */
+        .premium-typewriter-container {
+            width: 100%;
+            height: 100%;
+            min-height: inherit;
+            /* Inherits height from parent box if defined */
+            background-color: var(--hosh-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cormorant Garamond', serif;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .terminal-wrapper {
+            width: 100%;
+            max-width: 100%;
+            /* Ensures it never overflows the parent box */
+            color: var(--hosh-text);
+        }
+
+        .typewriter-text {
+            /* Changed to use container-relative sizing or fluid scaling */
+            font-size: clamp(1rem, 10cqw, 8rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            display: inline-block;
+            min-height: 1.2em;
+            word-break: break-word;
+            /* Prevents long phrases from breaking the box */
+        }
+
+        .status-bar {
+            margin-bottom: 1.5rem;
+            font-size: clamp(0.6rem, 2cqw, 0.8rem);
+            letter-spacing: 0.2em;
+            color: var(--hosh-dim);
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #1c1917;
+            padding-bottom: 0.5rem;
+        }
+
+        .line-number {
+            color: var(--hosh-line);
+            margin-right: 1rem;
+            user-select: none;
+            font-size: clamp(0.8rem, 3cqw, 1.2rem);
+        }
+
+        /* Container Queries support for even better fluid behavior */
+        .premium-typewriter-container {
+            container-type: inline-size;
+        }
+
+        :root {
+            --gw-bg-color: #0c0a09;
+            --gw-accent-color: #f5f5dc;
+            --gw-main-text: #e7d7c1;
+            --gw-dim-text: #78716c;
+            --gw-line-accent: #44403c;
+        }
+
+        /* Renamed classes to unique namespace 'gw-' (Gaurav's Workspace) */
+        .gw-premium-terminal-box {
+            width: 100%;
+            height: 100%;
+            min-height: inherit;
+            background-color: var(--gw-bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cormorant Garamond', serif;
+            padding: 2rem;
+            box-sizing: border-box;
+            container-type: inline-size;
+        }
+
+        .gw-content-shell {
+            width: 100%;
+            max-width: 100%;
+            color: var(--gw-main-text);
+        }
+
+        .gw-dynamic-typing-text {
+            font-size: clamp(1rem, 10cqw, 8rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            display: inline-block;
+            min-height: 1.2em;
+            word-break: break-word;
+        }
+
+        .gw-header-meta {
+            margin-bottom: 1.5rem;
+            font-size: clamp(0.6rem, 2cqw, 0.8rem);
+            letter-spacing: 0.2em;
+            color: var(--gw-dim-text);
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #1c1917;
+            padding-bottom: 0.5rem;
+        }
+
+        .gw-code-line-ref {
+            color: var(--gw-line-accent);
+            margin-right: 1rem;
+            user-select: none;
+            font-size: clamp(0.8rem, 3cqw, 1.2rem);
+        }
+
+        :root {
+            --rbpu-bg: #0c0a09;
+            --rbpu-highlight: #f5f5dc;
+            --rbpu-primary: #e7d7c1;
+            --rbpu-secondary: #78716c;
+            --rbpu-gutter: #44403c;
+        }
+
+        /* Unique namespace 'rbpu-' for all layout elements */
+        .rbpu-hero-frame {
+            width: 100%;
+            height: 100%;
+            min-height: inherit;
+            background-color: var(--rbpu-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cormorant Garamond', serif;
+            padding: 2rem;
+            box-sizing: border-box;
+            container-type: inline-size;
+        }
+
+        .rbpu-inner-layout {
+            width: 100%;
+            max-width: 100%;
+            color: var(--rbpu-primary);
+        }
+
+        .rbpu-type-output {
+            font-size: clamp(1rem, 10cqw, 8rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            display: inline-block;
+            min-height: 1.2em;
+            word-break: break-word;
+        }
+
+        .rbpu-top-bar {
+            margin-bottom: 1.5rem;
+            font-size: clamp(0.6rem, 2cqw, 0.8rem);
+            letter-spacing: 0.2em;
+            color: var(--rbpu-secondary);
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #1c1917;
+            padding-bottom: 0.5rem;
+        }
+
+        .rbpu-index-number {
+            color: var(--rbpu-gutter);
+            margin-right: 1rem;
+            user-select: none;
+            font-size: clamp(0.8rem, 3cqw, 1.2rem);
         }
 
         #matrix-stage {
@@ -1029,120 +1205,11 @@
 
         .atmospheric-noise {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             opacity: 0.08;
             pointer-events: none;
             background-image: url('https://grainy-gradients.vercel.app/noise.svg');
             z-index: 2;
-        }
-
-        :root {
-            --bg-base: #1a1a1a;
-            --chevron-color: #262626;
-            --cream: #f5f5dc;
-            --dot-color: transparent;
-        }
-
-        /* Container Queries */
-        .wrapper {
-            container-type: inline-size;
-            width: 100%;
-            height: 100%;
-            min-height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background-color: var(--bg-base);
-        }
-
-        .responsive-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* Background Layer with Video Pattern */
-        .video-bg {
-            position: absolute;
-            top: -50%;
-            left: 0;
-            width: 100%;
-            height: 200%;
-            background: 
-                radial-gradient(var(--dot-color) 1px, transparent 1px),
-                linear-gradient(135deg, var(--chevron-color) 25%, transparent 25%) -50px 0,
-                linear-gradient(225deg, var(--chevron-color) 25%, transparent 25%) -50px 0,
-                linear-gradient(315deg, var(--chevron-color) 25%, transparent 25%),
-                linear-gradient(45deg, var(--chevron-color) 25%, transparent 25%);
-            background-size: 4px 4px, 100px 100px, 100px 100px, 100px 100px, 100px 100px;
-            animation: moveDown 12s linear infinite;
-            z-index: 1;
-        }
-
-        @keyframes moveDown {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100px); }
-        }
-
-        .vignette {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
-            z-index: 2;
-        }
-
-        .content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 5cqw; /* Padding scales with container width */
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .city-name {
-            color: var(--cream);
-            font-family: 'Cormorant Garamond', serif;
-            /* cqw = container query width. This makes font size relative to the div width */
-            font-size: 14cqw; 
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            margin: 0;
-            text-transform: uppercase;
-            line-height: 0.9;
-            text-shadow: 0 1cqw 3cqw rgba(0,0,0,0.5);
-            white-space: nowrap;
-        }
-
-        .tagline {
-            color: var(--cream);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5cqw;
-            font-weight: 300;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            opacity: 0.9;
-            margin-top: 2cqw;
-            padding-left: 0.5em;
-            white-space: nowrap;
-        }
-
-        .divider {
-            width: 15cqw;
-            height: 1px;
-            background-color: var(--cream);
-            margin: 3cqw auto;
-            opacity: 0.6;
         }
 
     </style>
@@ -1189,7 +1256,7 @@
             <span class="hero-label">Creative Developer & Designer</span>
             <h1>
                 <span class="line"><span>Crafting Digital
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="40" height="40">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="40" height="40">
                             <polygon points="
                         100,0
                         112,86
@@ -1201,7 +1268,7 @@
                         88,86
                         " fill="var(--accent)" />
                         </svg>
-                    </span></span>
+                </span></span>
                 <span class="line"><span>Experiences</span></span>
             </h1>
             <p class="hero-description">
@@ -1228,8 +1295,7 @@
                     <span class="work-number">001</span>
                     <h3 class="work-title">City Site</h3>
                     <p class="work-description">
-                        This platform serves as a modern digital gateway, blending essential urban resources with an
-                        intuitive interface to showcase the city’s vibrant culture.
+                        This platform serves as a modern digital gateway, blending essential urban resources with an intuitive interface to showcase the city’s vibrant culture.
                     </p>
                     <div class="work-tags">
                         <span class="tag">WebGL</span>
@@ -1237,24 +1303,26 @@
                         <span class="tag">Node.js</span>
                         <span class="tag">React</span>
                     </div>
-                    <a href="https://gauravkatnoria12.github.io/Hoshiarpur/" target="_blank" class="work-link">View
-                        Project</a>
+                    <a href="https://gauravkatnoria12.github.io/Hoshiarpur/" target="_blank" class="work-link">View Project</a>
                 </div>
                 <div class="work-image">
                     <div class="work-image-inner">
                         <div class="image-placeholder">
-                            <div class="wrapper">
-                                <div class="responsive-container">
-                                    <div class="video-bg"></div>
-                                    <div class="vignette"></div>
-                                    <div class="content">
-                                        <h1 class="city-name">Hoshiarpur</h1>
-                                        <div class="divider"></div>
-                                        <p class="tagline">City Site</p>
+                            <div style="width: 100%; height: 100%;">
+                                <div class="premium-typewriter-container">
+                                    <div class="terminal-wrapper">
+                                        <div class="status-bar">
+                                            <span>City Site</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="line-number">01</span>
+                                            <div class="flex-1">
+                                                <span class="typewriter-text" id="typewriter-hero"></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
             </article>
@@ -1264,32 +1332,32 @@
                     <span class="work-number">002</span>
                     <h3 class="work-title">Workspace</h3>
                     <p class="work-description">
-                        A workspace platform integrates streamlined project management with a minimalist design to
-                        cultivate maximum productivity and professional collaboration.
+                        A workspace platform integrates streamlined project management with a minimalist design to cultivate maximum productivity and professional collaboration.
                     </p>
                     <div class="work-tags">
                         <span class="tag">Next.js</span>
                         <span class="tag">React</span>
                         <span class="tag">Tailwind CSS</span>
                     </div>
-                    <a href="https://gauravkatnoria12.github.io/GauravWorkspace" target="_blank" class="work-link">View
-                        Project</a>
+                    <a href="https://gauravkatnoria12.github.io/GauravWorkspace" target="_blank" class="work-link">View Project</a>
                 </div>
                 <div class="work-image">
                     <div class="work-image-inner">
                         <div class="image-placeholder">
-                            <div class="wrapper">
-                                <div class="responsive-container">
-                                    <div class="video-bg"></div>
-                                    <div class="vignette"></div>
-                                    <div class="content">
-                                        <h1 class="city-name">RBPU HSP</h1>
-                                        <div class="divider"></div>
-                                        <p class="tagline">College Site</p>
+                            <div style="width: 100%; height: 100%;">
+                                <div class="gw-premium-terminal-box">
+                                    <div class="gw-content-shell">
+                                        <div class="gw-header-meta">
+                                            <span>Gaurav</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="gw-code-line-ref">02</span>
+                                            <div class="flex-1">
+                                                <span class="gw-dynamic-typing-text" id="gw-typing-target"></span>                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -1300,32 +1368,33 @@
                     <span class="work-number">003</span>
                     <h3 class="work-title">RBPU site</h3>
                     <p class="work-description">
-                        A college concept into a high-performance digital reality, combining clean code with an
-                        intuitive, professional user experience
+                        A college concept into a high-performance digital reality, combining clean code with an intuitive, professional user experience
                     </p>
                     <div class="work-tags">
                         <span class="tag">Web API</span>
                         <span class="tag">Canvas</span>
                         <span class="tag">Javascript</span>
                     </div>
-                    <a href="https://gauravkatnoria12.github.io/RBPU-SITE/" target="_blank" class="work-link">View
-                        Project</a>
+                    <a href="https://gauravkatnoria12.github.io/RBPU-SITE/" target="_blank" class="work-link">View Project</a>
                 </div>
                 <div class="work-image">
                     <div class="work-image-inner">
                         <div class="image-placeholder">
-                            <div class="wrapper">
-                                <div class="responsive-container">
-                                    <div class="video-bg"></div>
-                                    <div class="vignette"></div>
-                                    <div class="content">
-                                        <h1 class="city-name">Techspace</h1>
-                                        <div class="divider"></div>
-                                        <p class="tagline">Workspace</p>
+                            <div style="width: 100%; height: 100%;">
+                                <div class="rbpu-hero-frame">
+                                    <div class="rbpu-inner-layout">
+                                        <div class="rbpu-top-bar">
+                                            <span>RBPU Hsp</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="rbpu-index-number">03</span>
+                                            <div class="flex-1">
+                                                <span class="rbpu-type-output" id="rbpu-typed-string"></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -1422,10 +1491,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Loader - reduced timeout
-        window.addEventListener('load', () => { 
-            setTimeout(() => document.getElementById('loader').classList.add('hidden'), 800); 
-        }, { passive: true });
+        // Loader
+        window.addEventListener('load', () => { setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1500); });
 
         // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
@@ -1443,12 +1510,51 @@
                 link.addEventListener('click', () => {
                     menuToggle.classList.remove('active');
                     navMenu.classList.remove('active');
-                }, { passive: true });
+                });
             });
         }
 
-        // Enhanced Custom Cursor - Disabled for performance
-        // Cursor animations removed to improve performance
+        // Enhanced Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        if (cursorDot && cursorOutline) {
+            let mouseX = 0, mouseY = 0;
+            let dotX = 0, dotY = 0;
+            let outlineX = 0, outlineY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function animateCursor() {
+                const speed = 0.2;
+                const outlineSpeed = 0.08;
+
+                dotX += (mouseX - dotX) * speed;
+                dotY += (mouseY - dotY) * speed;
+                outlineX += (mouseX - outlineX) * outlineSpeed;
+                outlineY += (mouseY - outlineY) * outlineSpeed;
+
+                cursorDot.style.transform = `translate(${dotX}px, ${dotY}px)`;
+                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // Cursor interactions
+            const interactiveElements = document.querySelectorAll('a, button, .work-image');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.classList.add('active');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.classList.remove('active');
+                });
+            });
+        }
 
         // Advanced Three.js Scene
         const container = document.getElementById('webgl-container');
@@ -1465,13 +1571,13 @@
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             container.appendChild(renderer.domElement);
 
-            // Create sophisticated geometry - simplified
-            const geometry = new THREE.IcosahedronGeometry(1, 1);
+            // Create sophisticated geometry
+            const geometry = new THREE.IcosahedronGeometry(1, 2);
             const material = new THREE.MeshPhongMaterial({
                 color: 0xC4A57B,
                 wireframe: true,
                 transparent: true,
-                opacity: 0.1
+                opacity: 0.15
             });
 
             const mesh = new THREE.Mesh(geometry, material);
@@ -1489,9 +1595,9 @@
             const ambientLight = new THREE.AmbientLight(0xE8DCC4, 0.2);
             scene.add(ambientLight);
 
-            // Particle system - optimized for performance
+            // Particle system
             const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 600;
+            const particlesCount = 2000;
             const posArray = new Float32Array(particlesCount * 3);
 
             for (let i = 0; i < particlesCount * 3; i++) {
@@ -1504,8 +1610,8 @@
                 size: 0.012,
                 color: 0xC4A57B,
                 transparent: true,
-                opacity: 0.3,
-                blending: THREE.NormalBlending
+                opacity: 0.4,
+                blending: THREE.AdditiveBlending
             });
 
             const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -1513,60 +1619,39 @@
 
             camera.position.z = 5;
 
-            // Mouse interaction - throttled
+            // Mouse interaction
             let targetRotationX = 0;
             let targetRotationY = 0;
             let currentRotationX = 0;
             let currentRotationY = 0;
-            let lastMouseX = 0, lastMouseY = 0;
 
             document.addEventListener('mousemove', (e) => {
-                lastMouseX = e.clientX;
-                lastMouseY = e.clientY;
-            }, { passive: true });
+                targetRotationY = (e.clientX / window.innerWidth - 0.5) * 0.3;
+                targetRotationX = (e.clientY / window.innerHeight - 0.5) * 0.3;
+            });
 
-            // Update rotation only when needed
-            function updateMouseRotation() {
-                targetRotationY = (lastMouseX / window.innerWidth - 0.5) * 0.2;
-                targetRotationX = (lastMouseY / window.innerHeight - 0.5) * 0.2;
-            }
-
-// Scroll-based animation - throttled every 200ms
-        let scrollY = window.scrollY;
-        let lastScrollUpdate = 0;
-        window.addEventListener('scroll', () => {
-            const now = Date.now();
-            if (now - lastScrollUpdate > 50) {
+            // Scroll-based animation
+            let scrollY = window.scrollY;
+            window.addEventListener('scroll', () => {
                 scrollY = window.scrollY;
-                lastScrollUpdate = now;
-            }
-        }, { passive: true });
+            });
 
-            // Animation loop - optimized
-            let frameCount = 0;
+            // Animation loop
             function animate() {
                 requestAnimationFrame(animate);
-                frameCount++;
-
-                // Update mouse rotation every 10 frames
-                if (frameCount % 10 === 0) {
-                    updateMouseRotation();
-                }
 
                 // Smooth rotation
-                currentRotationX += (targetRotationX - currentRotationX) * 0.08;
-                currentRotationY += (targetRotationY - currentRotationY) * 0.08;
+                currentRotationX += (targetRotationX - currentRotationX) * 0.05;
+                currentRotationY += (targetRotationY - currentRotationY) * 0.05;
 
-                mesh.rotation.x = currentRotationX + scrollY * 0.0002;
-                mesh.rotation.y = currentRotationY + scrollY * 0.00015;
+                mesh.rotation.x = currentRotationX + scrollY * 0.0003;
+                mesh.rotation.y = currentRotationY + scrollY * 0.0002;
 
-                particlesMesh.rotation.y += 0.0002;
-                particlesMesh.rotation.x += 0.00005;
+                particlesMesh.rotation.y += 0.0003;
+                particlesMesh.rotation.x += 0.0001;
 
-                // Reduce camera position updates
-                if (frameCount % 5 === 0) {
-                    camera.position.y = -(scrollY * 0.0008);
-                }
+                // Scroll effect
+                camera.position.y = -(scrollY * 0.001);
 
                 renderer.render(scene, camera);
             }
@@ -1583,14 +1668,13 @@
         // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.15,
-            rootMargin: '0px 0px -80px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -1610,133 +1694,241 @@
                         block: 'start'
                     });
                 }
-            }, { passive: true });
+            });
         });
 
+        const textElement = document.getElementById('typewriter-hero');
+        const phrases = ["HOSHIARPUR", "CITY-SITE"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
 
-        //About Section - Optimized for performance
-        let _primeScene, _mainLens, _drawEngine, _nexusPoints, _temporalFlow;
-        const _viewportElement = document.getElementById('gl-viewport');
-        const _fluidTendrils = [];
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
 
-        function _initArchitecture() {
-            if (!_viewportElement) return;
-            
-            _primeScene = new THREE.Scene();
-            _temporalFlow = new THREE.Clock();
-
-            // Lens configuration
-            _mainLens = new THREE.PerspectiveCamera(45, _viewportElement.clientWidth / _viewportElement.clientHeight, 0.1, 1000);
-            _mainLens.position.z = 5;
-
-            _drawEngine = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            _drawEngine.setSize(_viewportElement.clientWidth, _viewportElement.clientHeight);
-            _drawEngine.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-            _viewportElement.appendChild(_drawEngine.domElement);
-
-            // Simplified lighting
-            const _radiantNode = new THREE.PointLight(0xC4A57B, 1.2, 15);
-            _radiantNode.position.set(5, 5, 5);
-            _primeScene.add(_radiantNode);
-
-            const _softAmbiance = new THREE.AmbientLight(0xffffff, 0.15);
-            _primeScene.add(_softAmbiance);
-
-            // ENGINEERING CORE: Simplified constellation
-            const _nodeCount = 200;
-            const _constellationGeometry = new THREE.BufferGeometry();
-            const _coordinateMap = new Float32Array(_nodeCount * 3);
-
-            for (let i = 0; i < _nodeCount; i++) {
-                const _radius = 2.2;
-                const _zenith = Math.acos(THREE.MathUtils.randFloat(-1, 1));
-                const _azimuth = THREE.MathUtils.randFloat(0, Math.PI * 2);
-
-                _coordinateMap[i * 3] = _radius * Math.sin(_zenith) * Math.cos(_azimuth);
-                _coordinateMap[i * 3 + 1] = _radius * Math.sin(_zenith) * Math.sin(_azimuth);
-                _coordinateMap[i * 3 + 2] = _radius * Math.cos(_zenith);
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 60;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 150;
             }
 
-            _constellationGeometry.setAttribute('position', new THREE.BufferAttribute(_coordinateMap, 3));
-            const _pointAesthetic = new THREE.PointsMaterial({
-                color: 0xC4A57B,
-                size: 0.02,
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 3000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 800;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+
+        const gwTextDisplay = document.getElementById('gw-typing-target');
+        const gwPhraseList = ["TECHSPACE", "WORKSPACE"];
+
+        let gwCurrentPhraseIdx = 0;
+        let gwCurrentCharIdx = 0;
+        let gwIsDeletingMode = false;
+        let gwTransitionSpeed = 100;
+
+        function gwExecuteTyping() {
+            const fullText = gwPhraseList[gwCurrentPhraseIdx];
+
+            if (gwIsDeletingMode) {
+                gwTextDisplay.textContent = fullText.substring(0, gwCurrentCharIdx - 1);
+                gwCurrentCharIdx--;
+                gwTransitionSpeed = 60;
+            } else {
+                gwTextDisplay.textContent = fullText.substring(0, gwCurrentCharIdx + 1);
+                gwCurrentCharIdx++;
+                gwTransitionSpeed = 150;
+            }
+
+            if (!gwIsDeletingMode && gwCurrentCharIdx === fullText.length) {
+                gwTransitionSpeed = 3000;
+                gwIsDeletingMode = true;
+            } else if (gwIsDeletingMode && gwCurrentCharIdx === 0) {
+                gwIsDeletingMode = false;
+                gwCurrentPhraseIdx = (gwCurrentPhraseIdx + 1) % gwPhraseList.length;
+                gwTransitionSpeed = 800;
+            }
+
+            setTimeout(gwExecuteTyping, gwTransitionSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', gwExecuteTyping);
+
+        const rbpuOutputNode = document.getElementById('rbpu-typed-string');
+        const rbpuStringCollection = ["RBPU HSP", "COLLEGE"];
+
+        let rbpuActiveStrIdx = 0;
+        let rbpuActiveCharIdx = 0;
+        let rbpuDeletingFlag = false;
+        let rbpuTickerSpeed = 100;
+
+        function rbpuRunAnimation() {
+            const rbpuFullText = rbpuStringCollection[rbpuActiveStrIdx];
+
+            if (rbpuDeletingFlag) {
+                rbpuOutputNode.textContent = rbpuFullText.substring(0, rbpuActiveCharIdx - 1);
+                rbpuActiveCharIdx--;
+                rbpuTickerSpeed = 50;
+            } else {
+                rbpuOutputNode.textContent = rbpuFullText.substring(0, rbpuActiveCharIdx + 1);
+                rbpuActiveCharIdx++;
+                rbpuTickerSpeed = 150;
+            }
+
+            if (!rbpuDeletingFlag && rbpuActiveCharIdx === rbpuFullText.length) {
+                rbpuTickerSpeed = 3000;
+                rbpuDeletingFlag = true;
+            } else if (rbpuDeletingFlag && rbpuActiveCharIdx === 0) {
+                rbpuDeletingFlag = false;
+                rbpuActiveStrIdx = (rbpuActiveStrIdx + 1) % rbpuStringCollection.length;
+                rbpuTickerSpeed = 800;
+            }
+
+            setTimeout(rbpuRunAnimation, rbpuTickerSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', rbpuRunAnimation);
+
+
+         let _primeScene, _mainLens, _drawEngine, _nexusPoints, _temporalFlow;
+    const _viewportElement = document.getElementById('gl-viewport');
+    const _fluidTendrils = [];
+
+    function _initArchitecture() {
+        _primeScene = new THREE.Scene();
+        _temporalFlow = new THREE.Clock();
+        
+        // Lens configuration for high-fidelity perspective
+        _mainLens = new THREE.PerspectiveCamera(45, _viewportElement.clientWidth / _viewportElement.clientHeight, 0.1, 1000);
+        _mainLens.position.z = 7;
+
+        _drawEngine = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        _drawEngine.setSize(_viewportElement.clientWidth, _viewportElement.clientHeight);
+        _drawEngine.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        _viewportElement.appendChild(_drawEngine.domElement);
+
+        // Illuminating the structure
+        const _radiantNode = new THREE.PointLight(0xC4A57B, 1.8, 20);
+        _radiantNode.position.set(5, 5, 5);
+        _primeScene.add(_radiantNode);
+
+        const _softAmbiance = new THREE.AmbientLight(0xffffff, 0.2);
+        _primeScene.add(_softAmbiance);
+
+        // ENGINEERING CORE: The Nexus Constellation
+        const _nodeCount = 500;
+        const _constellationGeometry = new THREE.BufferGeometry();
+        const _coordinateMap = new Float32Array(_nodeCount * 3);
+
+        for (let i = 0; i < _nodeCount; i++) {
+            const _radius = 2.8;
+            const _zenith = Math.acos(THREE.MathUtils.randFloat(-1, 1));
+            const _azimuth = THREE.MathUtils.randFloat(0, Math.PI * 2);
+
+            _coordinateMap[i * 3] = _radius * Math.sin(_zenith) * Math.cos(_azimuth);
+            _coordinateMap[i * 3 + 1] = _radius * Math.sin(_zenith) * Math.sin(_azimuth);
+            _coordinateMap[i * 3 + 2] = _radius * Math.cos(_zenith);
+        }
+
+        _constellationGeometry.setAttribute('position', new THREE.BufferAttribute(_coordinateMap, 3));
+        const _pointAesthetic = new THREE.PointsMaterial({
+            color: 0xC4A57B, 
+            size: 0.025,
+            transparent: true,
+            opacity: 0.7
+        });
+        _nexusPoints = new THREE.Points(_constellationGeometry, _pointAesthetic);
+        _primeScene.add(_nexusPoints);
+
+        // ARTISTRY LAYER: Flowing Silk Vectors
+        _forgeFlowVectors();
+
+        window.addEventListener('resize', _syncDimensions);
+        _renderCycle();
+    }
+
+    function _forgeFlowVectors() {
+        const _vectorStreams = 2;
+        const _chromaPalette = [0xF5F1E8, 0x9B8B7E]; 
+
+        for (let i = 0; i < _vectorStreams; i++) {
+            const _pathWaypoints = [];
+            for (let j = 0; j < 50; j++) {
+                _pathWaypoints.push(new THREE.Vector3(0, 0, 0));
+            }
+            const _splineCurve = new THREE.CatmullRomCurve3(_pathWaypoints);
+            const _volumeGeometry = new THREE.TubeGeometry(_splineCurve, 64, 0.015, 8, false);
+            const _surfaceMaterial = new THREE.MeshPhongMaterial({ 
+                color: _chromaPalette[i],
+                emissive: _chromaPalette[i],
+                emissiveIntensity: 0.4,
                 transparent: true,
-                opacity: 0.6
+                opacity: 0.8
             });
-            _nexusPoints = new THREE.Points(_constellationGeometry, _pointAesthetic);
-            _primeScene.add(_nexusPoints);
-
-            // ARTISTRY LAYER: Flowing Silk Vectors
-            _forgeFlowVectors();
-
-            window.addEventListener('resize', _syncDimensions, { passive: true });
-            _renderCycle();
+            const _vectorMesh = new THREE.Mesh(_volumeGeometry, _surfaceMaterial);
+            _primeScene.add(_vectorMesh);
+            _fluidTendrils.push({ _shell: _vectorMesh, _phaseShift: i * Math.PI });
         }
+    }
 
-        function _forgeFlowVectors() {
-            const _vectorStreams = 2;
-            const _chromaPalette = [0xF5F1E8, 0x9B8B7E];
-
-            for (let i = 0; i < _vectorStreams; i++) {
-                const _pathWaypoints = [];
-                for (let j = 0; j < 50; j++) {
-                    _pathWaypoints.push(new THREE.Vector3(0, 0, 0));
-                }
-                const _splineCurve = new THREE.CatmullRomCurve3(_pathWaypoints);
-                const _volumeGeometry = new THREE.TubeGeometry(_splineCurve, 64, 0.015, 8, false);
-                const _surfaceMaterial = new THREE.MeshPhongMaterial({
-                    color: _chromaPalette[i],
-                    emissive: _chromaPalette[i],
-                    emissiveIntensity: 0.3,
-                    transparent: true,
-                    opacity: 0.6
-                });
-                const _vectorMesh = new THREE.Mesh(_volumeGeometry, _surfaceMaterial);
-                _primeScene.add(_vectorMesh);
-                _fluidTendrils.push({ _shell: _vectorMesh, _phaseShift: i * Math.PI });
-            }
+    function _evolveTendril(_activeTendril, _currentTick) {
+        const _newWaypoints = [];
+        const _resolution = 50;
+        for (let i = 0; i < _resolution; i++) {
+            const _progress = i / _resolution;
+            const _orbitalAngle = _progress * Math.PI * 2 + (_currentTick * 0.8) + _activeTendril._phaseShift;
+            const _posX = Math.sin(_orbitalAngle) * 3.2 * Math.cos(_currentTick * 0.3 + _activeTendril._phaseShift);
+            const _posY = Math.cos(_orbitalAngle) * 3.2;
+            const _posZ = Math.sin(_currentTick * 0.6 + _orbitalAngle) * 2.5;
+            _newWaypoints.push(new THREE.Vector3(_posX, _posY, _posZ));
         }
+        const _refinedSpline = new THREE.CatmullRomCurve3(_newWaypoints);
+        _activeTendril._shell.geometry.dispose();
+        _activeTendril._shell.geometry = new THREE.TubeGeometry(_refinedSpline, 64, 0.012, 8, false);
+    }
 
-        function _evolveTendril(_activeTendril, _currentTick) {
-            const _newWaypoints = [];
-            const _resolution = 50;
-            for (let i = 0; i < _resolution; i++) {
-                const _progress = i / _resolution;
-                const _orbitalAngle = _progress * Math.PI * 2 + (_currentTick * 0.8) + _activeTendril._phaseShift;
-                const _posX = Math.sin(_orbitalAngle) * 3.2 * Math.cos(_currentTick * 0.3 + _activeTendril._phaseShift);
-                const _posY = Math.cos(_orbitalAngle) * 3.2;
-                const _posZ = Math.sin(_currentTick * 0.6 + _orbitalAngle) * 2.5;
-                _newWaypoints.push(new THREE.Vector3(_posX, _posY, _posZ));
-            }
-            const _refinedSpline = new THREE.CatmullRomCurve3(_newWaypoints);
-            _activeTendril._shell.geometry.dispose();
-            _activeTendril._shell.geometry = new THREE.TubeGeometry(_refinedSpline, 64, 0.012, 8, false);
+    function _syncDimensions() {
+        const _w = _viewportElement.clientWidth;
+        const _h = _viewportElement.clientHeight;
+        _mainLens.aspect = _w / _h;
+        _mainLens.updateProjectionMatrix();
+        _drawEngine.setSize(_w, _h);
+    }
+
+    function _renderCycle() {
+        requestAnimationFrame(_renderCycle);
+        const _elapsedTime = _temporalFlow.getElapsedTime();
+
+        // Animate the Nexus Constellation (Engineering)
+        const _rawCoords = _nexusPoints.geometry.attributes.position.array;
+        for (let i = 0; i < _rawCoords.length; i += 3) {
+            const _yVal = _rawCoords[i+1];
+            const _zVal = _rawCoords[i+2];
+            _rawCoords[i] += Math.sin(_elapsedTime * 0.5 + _yVal) * 0.003;
+            _rawCoords[i+2] += Math.cos(_elapsedTime * 0.5 + _zVal) * 0.003;
         }
+        _nexusPoints.geometry.attributes.position.needsUpdate = true;
+        _nexusPoints.rotation.y += 0.0015;
 
-        function _syncDimensions() {
-            const _w = _viewportElement.clientWidth;
-            const _h = _viewportElement.clientHeight;
-            _mainLens.aspect = _w / _h;
-            _mainLens.updateProjectionMatrix();
-            _drawEngine.setSize(_w, _h);
-        }
+        // Animate Fluid Tendrils (Artistry)
+        _fluidTendrils.forEach(_t => _evolveTendril(_t, _elapsedTime));
 
-        function _renderCycle() {
-            requestAnimationFrame(_renderCycle);
-            const _elapsedTime = _temporalFlow.getElapsedTime();
+        _drawEngine.render(_primeScene, _mainLens);
+    }
 
-            // Simplified Nexus Constellation animation
-            _nexusPoints.rotation.y += 0.0008;
-            _nexusPoints.rotation.x += 0.0003;
-
-            // Animate Fluid Tendrils (Artistry)
-            _fluidTendrils.forEach(_t => _evolveTendril(_t, _elapsedTime));
-
-            _drawEngine.render(_primeScene, _mainLens);
-        }
-
-        window.addEventListener('load', _initArchitecture, { passive: true });
+    window.onload = _initArchitecture;
 
     </script>
 </body>
