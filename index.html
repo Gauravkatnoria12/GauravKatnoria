@@ -330,7 +330,7 @@
 
         .hero h1 {
             font-size: clamp(3.5rem, 10vw, 12rem);
-            font-weight: 500;
+            font-weight: 400;
             line-height: 1;
             letter-spacing: -0.03em;
             margin-top: 1rem;
@@ -354,7 +354,7 @@
             vertical-align: top;
             margin: 0 0.5rem;
             height: 1em;
-            width: 0.8em !important;
+            width: 0.7em !important;
         }
 
         .hero h1 .line:nth-child(1) span {
@@ -581,6 +581,7 @@
             aspect-ratio: 16/10;
             overflow: hidden;
             background: linear-gradient(135deg, #2C2416 0%, #1A1612 100%);
+            border-top: 1px solid rgba(249, 244, 215, 0.127);
             border-bottom: 1px solid rgba(249, 244, 215, 0.127);
             border-radius: 2px;
             cursor: pointer;
@@ -967,7 +968,7 @@
         @media (max-width: 405px) {
             .hero h1 svg {
                 display: block !important;
-                margin: 1rem 0;
+                margin: 0.5rem 0;
             }
         }
 
@@ -987,7 +988,7 @@
             .hero h1 svg {
                 height: 0.8em;
                 width: 0.8em !important;
-                margin: 0 0.2rem;
+                margin: 0.3rem 0.2rem;
             }
 
             .scroll-prompt {
@@ -1042,6 +1043,7 @@
             /* Changed to use container-relative sizing or fluid scaling */
             font-size: clamp(1rem, 14cqw, 10rem);
             font-weight: 500;
+            color: var(--highlight);
             letter-spacing: -0.02em;
             display: inline-block;
             min-height: 1.2em;
@@ -1095,6 +1097,7 @@
         .gw-dynamic-typing-text {
             font-size: clamp(1rem, 14cqw, 10rem);
             font-weight: 500;
+            color: var(--highlight);
             letter-spacing: -0.02em;
             display: inline-block;
             min-height: 1.2em;
@@ -1141,11 +1144,19 @@
         .rbpu-type-output {
             font-size: clamp(1rem, 14cqw, 10rem);
             font-weight: 500;
+            color: var(--highlight);
             letter-spacing: -0.02em;
             display: inline-block;
             min-height: 1.2em;
             word-break: break-word;
         }
+
+        .workimg-top {
+            position: absolute; 
+            font-size: clamp(0.5rem, 1rem, 2rem);
+        }
+
+                   /* HEAVY animation */
 
         #matrix-stage {
             position: relative;
@@ -1275,6 +1286,7 @@
                                 <div class="premium-typewriter-container">
                                     <div class="terminal-wrapper">
                                         <div class="flex items-start">
+                                            <span class="workimg-top">HSP | THE CITY OF SAINTS</span>
                                             <div class="flex-1">
                                                 <i><span class="typewriter-text" id="typewriter-hero"></span></i>
                                             </div>
@@ -1307,6 +1319,7 @@
                                 <div class="gw-premium-terminal-box">
                                     <div class="gw-content-shell">
                                         <div class="flex items-start">
+                                            <span class="workimg-top">TECHSPACE</span>
                                             <div class="flex-1">
                                               <i><span class="gw-dynamic-typing-text" id="gw-typing-target"></span></i>                                            
                                             </div>
@@ -1340,6 +1353,7 @@
                                 <div class="rbpu-hero-frame">
                                     <div class="rbpu-inner-layout">
                                         <div class="flex items-start">
+                                            <span class="workimg-top">RAYAT BAHRA PROFESSIONAL UNIVERSITY</span>
                                             <div class="flex-1">
                                                 <i><span class="rbpu-type-output" id="rbpu-typed-string"></span></i>
                                             </div>
