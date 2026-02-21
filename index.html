@@ -1518,12 +1518,9 @@
             });
         }
 
-        // Mobile detection
-        const _isMobileDevice = () => window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-        // Advanced Three.js Scene - Disabled on mobile for performance
+        // Advanced Three.js Scene
         const container = document.getElementById('webgl-container');
-        if (container && typeof THREE !== 'undefined' && !_isMobileDevice()) {
+        if (container && typeof THREE !== 'undefined') {
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({
@@ -1560,9 +1557,9 @@
             const ambientLight = new THREE.AmbientLight(0xE8DCC4, 0.2);
             scene.add(ambientLight);
 
-            // Particle system - Reduced for better performance
+            // Particle system
             const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 800;
+            const particlesCount = 2000;
             const posArray = new Float32Array(particlesCount * 3);
 
             for (let i = 0; i < particlesCount * 3; i++) {
@@ -1595,15 +1592,10 @@
                 targetRotationX = (e.clientY / window.innerHeight - 0.5) * 0.3;
             });
 
-            // Scroll-based animation - Throttled for performance
+            // Scroll-based animation
             let scrollY = window.scrollY;
-            let lastScrollUpdate = 0;
             window.addEventListener('scroll', () => {
-                const now = Date.now();
-                if (now - lastScrollUpdate > 50) {
-                    scrollY = window.scrollY;
-                    lastScrollUpdate = now;
-                }
+                scrollY = window.scrollY;
             });
 
             // Animation loop
@@ -1775,13 +1767,8 @@
          let _primeScene, _mainLens, _drawEngine, _nexusPoints, _temporalFlow;
     const _viewportElement = document.getElementById('gl-viewport');
     const _fluidTendrils = [];
-    
-    // Skip about section WebGL on mobile devices
-    const _shouldInitAboutScene = !_isMobileDevice();
 
     function _initArchitecture() {
-        if (!_shouldInitAboutScene) return;
-        
         _primeScene = new THREE.Scene();
         _temporalFlow = new THREE.Clock();
         
@@ -1802,8 +1789,8 @@
         const _softAmbiance = new THREE.AmbientLight(0xffffff, 0.2);
         _primeScene.add(_softAmbiance);
 
-        // ENGINEERING CORE: The Nexus Constellation - Reduced particle count for performance
-        const _nodeCount = 200;
+        // ENGINEERING CORE: The Nexus Constellation
+        const _nodeCount = 500;
         const _constellationGeometry = new THREE.BufferGeometry();
         const _coordinateMap = new Float32Array(_nodeCount * 3);
 
@@ -1854,15 +1841,11 @@
             });
             const _vectorMesh = new THREE.Mesh(_volumeGeometry, _surfaceMaterial);
             _primeScene.add(_vectorMesh);
-            _fluidTendrils.push({ _shell: _vectorMesh, _phaseShift: i * Math.PI, _lastUpdateTime: 0 });
+            _fluidTendrils.push({ _shell: _vectorMesh, _phaseShift: i * Math.PI });
         }
     }
 
     function _evolveTendril(_activeTendril, _currentTick) {
-        // Only update tendrils every 2 frames to reduce performance impact
-        if (_currentTick - _activeTendril._lastUpdateTime < 0.033) return;
-        _activeTendril._lastUpdateTime = _currentTick;
-        
         const _newWaypoints = [];
         const _resolution = 50;
         for (let i = 0; i < _resolution; i++) {
@@ -1879,7 +1862,6 @@
     }
 
     function _syncDimensions() {
-        if (!_viewportElement) return;
         const _w = _viewportElement.clientWidth;
         const _h = _viewportElement.clientHeight;
         _mainLens.aspect = _w / _h;
@@ -1889,22 +1871,18 @@
 
     function _renderCycle() {
         requestAnimationFrame(_renderCycle);
-        if (!_shouldInitAboutScene || !_primeScene) return;
-        
         const _elapsedTime = _temporalFlow.getElapsedTime();
 
         // Animate the Nexus Constellation (Engineering)
-        if (_nexusPoints) {
-            const _rawCoords = _nexusPoints.geometry.attributes.position.array;
-            for (let i = 0; i < _rawCoords.length; i += 3) {
-                const _yVal = _rawCoords[i+1];
-                const _zVal = _rawCoords[i+2];
-                _rawCoords[i] += Math.sin(_elapsedTime * 0.5 + _yVal) * 0.003;
-                _rawCoords[i+2] += Math.cos(_elapsedTime * 0.5 + _zVal) * 0.003;
-            }
-            _nexusPoints.geometry.attributes.position.needsUpdate = true;
-            _nexusPoints.rotation.y += 0.0015;
+        const _rawCoords = _nexusPoints.geometry.attributes.position.array;
+        for (let i = 0; i < _rawCoords.length; i += 3) {
+            const _yVal = _rawCoords[i+1];
+            const _zVal = _rawCoords[i+2];
+            _rawCoords[i] += Math.sin(_elapsedTime * 0.5 + _yVal) * 0.003;
+            _rawCoords[i+2] += Math.cos(_elapsedTime * 0.5 + _zVal) * 0.003;
         }
+        _nexusPoints.geometry.attributes.position.needsUpdate = true;
+        _nexusPoints.rotation.y += 0.0015;
 
         // Animate Fluid Tendrils (Artistry)
         _fluidTendrils.forEach(_t => _evolveTendril(_t, _elapsedTime));
