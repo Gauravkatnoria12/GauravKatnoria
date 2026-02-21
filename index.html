@@ -578,12 +578,9 @@
 
         .work-image {
             position: relative;
-            aspect-ratio: 16/10;
+            aspect-ratio: 16/9;
             overflow: hidden;
             background: linear-gradient(135deg, #2C2416 0%, #1A1612 100%);
-            border-top: 1px solid rgba(249, 244, 215, 0.127);
-            border-bottom: 1px solid rgba(249, 244, 215, 0.127);
-            border-radius: 2px;
             cursor: pointer;
         }
 
@@ -1022,7 +1019,7 @@
             height: 100%;
             min-height: inherit;
             /* Inherits height from parent box if defined */
-            background-color: var(--hosh-bg);
+            background-color: rgb(230, 223, 210);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1077,7 +1074,7 @@
             width: 100%;
             height: 100%;
             min-height: inherit;
-            background-color: var(--gw-bg-color);
+            background-color: rgb(230, 223, 210);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1124,7 +1121,7 @@
             width: 100%;
             height: 100%;
             min-height: inherit;
-            background-color: var(--rbpu-bg);
+            background-color: rgb(230, 223, 210);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1152,6 +1149,7 @@
         }
 
         .workimg-top {
+            color: rgb(31, 27, 22);
             position: absolute; 
             font-size: clamp(0.5rem, 1rem, 2rem);
         }
@@ -1274,8 +1272,8 @@
                     <div class="work-tags">
                         <span class="tag">WebGL</span>
                         <span class="tag">js</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">React</span>
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS</span>
                     </div>
                     <a href="https://gauravkatnoria12.github.io/Hoshiarpur/" target="_blank" class="work-link">View Project</a>
                 </div>
@@ -1301,16 +1299,15 @@
             <article class="work-item">
                 <div class="work-info">
                     <span class="work-number">002</span>
-                    <h3 class="work-title">Workspace</h3>
+                    <h3 class="work-title">THE ROAST</h3>
                     <p class="work-description">
-                        A workspace platform integrates streamlined project management with a minimalist design to cultivate maximum productivity and professional collaboration.
-                    </p>
+                        A cinematic, premium landing page designed for high-end coffee roastery branding. This project focuses on minimalist luxury, utilizing smooth scroll animations, a gold-on-stone color palette, and a fully responsive architectural grid.                    </p>
                     <div class="work-tags">
-                        <span class="tag">Next.js</span>
-                        <span class="tag">React</span>
+                        <span class="tag">Vanilla JavaScript</span>
+                        <span class="tag">HTML5</span>
                         <span class="tag">Tailwind CSS</span>
                     </div>
-                    <a href="https://gauravkatnoria12.github.io/GauravWorkspace" target="_blank" class="work-link">View Project</a>
+                    <a href="https://gauravkatnoria12.github.io/The-Roast/" target="_blank" class="work-link">View Project</a>
                 </div>
                 <div class="work-image">
                     <div class="work-image-inner">
@@ -1319,7 +1316,7 @@
                                 <div class="gw-premium-terminal-box">
                                     <div class="gw-content-shell">
                                         <div class="flex items-start">
-                                            <span class="workimg-top">TECHSPACE</span>
+                                            <span class="workimg-top">THE ROAST | Coffe shop site</span>
                                             <div class="flex-1">
                                               <i><span class="gw-dynamic-typing-text" id="gw-typing-target"></span></i>                                            
                                             </div>
@@ -1340,9 +1337,8 @@
                         A college concept into a high-performance digital reality, combining clean code with an intuitive, professional user experience
                     </p>
                     <div class="work-tags">
-                        <span class="tag">Web API</span>
-                        <span class="tag">Canvas</span>
-                        <span class="tag">Javascript</span>
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS</span>
                     </div>
                     <a href="https://gauravkatnoria12.github.io/RBPU-SITE/" target="_blank" class="work-link">View Project</a>
                 </div>
@@ -1522,9 +1518,12 @@
             });
         }
 
-        // Advanced Three.js Scene
+        // Mobile detection
+        const _isMobileDevice = () => window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        // Advanced Three.js Scene - Disabled on mobile for performance
         const container = document.getElementById('webgl-container');
-        if (container && typeof THREE !== 'undefined') {
+        if (container && typeof THREE !== 'undefined' && !_isMobileDevice()) {
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({
@@ -1561,9 +1560,9 @@
             const ambientLight = new THREE.AmbientLight(0xE8DCC4, 0.2);
             scene.add(ambientLight);
 
-            // Particle system
+            // Particle system - Reduced for better performance
             const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 2000;
+            const particlesCount = 800;
             const posArray = new Float32Array(particlesCount * 3);
 
             for (let i = 0; i < particlesCount * 3; i++) {
@@ -1596,10 +1595,15 @@
                 targetRotationX = (e.clientY / window.innerHeight - 0.5) * 0.3;
             });
 
-            // Scroll-based animation
+            // Scroll-based animation - Throttled for performance
             let scrollY = window.scrollY;
+            let lastScrollUpdate = 0;
             window.addEventListener('scroll', () => {
-                scrollY = window.scrollY;
+                const now = Date.now();
+                if (now - lastScrollUpdate > 50) {
+                    scrollY = window.scrollY;
+                    lastScrollUpdate = now;
+                }
             });
 
             // Animation loop
@@ -1698,7 +1702,7 @@
         document.addEventListener('DOMContentLoaded', type);
 
         const gwTextDisplay = document.getElementById('gw-typing-target');
-        const gwPhraseList = ["TECHSPACE", "WORKSPACE"];
+        const gwPhraseList = ["THE ROAST", "SHOP-SITE"];
 
         let gwCurrentPhraseIdx = 0;
         let gwCurrentCharIdx = 0;
@@ -1771,8 +1775,13 @@
          let _primeScene, _mainLens, _drawEngine, _nexusPoints, _temporalFlow;
     const _viewportElement = document.getElementById('gl-viewport');
     const _fluidTendrils = [];
+    
+    // Skip about section WebGL on mobile devices
+    const _shouldInitAboutScene = !_isMobileDevice();
 
     function _initArchitecture() {
+        if (!_shouldInitAboutScene) return;
+        
         _primeScene = new THREE.Scene();
         _temporalFlow = new THREE.Clock();
         
@@ -1793,8 +1802,8 @@
         const _softAmbiance = new THREE.AmbientLight(0xffffff, 0.2);
         _primeScene.add(_softAmbiance);
 
-        // ENGINEERING CORE: The Nexus Constellation
-        const _nodeCount = 500;
+        // ENGINEERING CORE: The Nexus Constellation - Reduced particle count for performance
+        const _nodeCount = 200;
         const _constellationGeometry = new THREE.BufferGeometry();
         const _coordinateMap = new Float32Array(_nodeCount * 3);
 
@@ -1845,11 +1854,15 @@
             });
             const _vectorMesh = new THREE.Mesh(_volumeGeometry, _surfaceMaterial);
             _primeScene.add(_vectorMesh);
-            _fluidTendrils.push({ _shell: _vectorMesh, _phaseShift: i * Math.PI });
+            _fluidTendrils.push({ _shell: _vectorMesh, _phaseShift: i * Math.PI, _lastUpdateTime: 0 });
         }
     }
 
     function _evolveTendril(_activeTendril, _currentTick) {
+        // Only update tendrils every 2 frames to reduce performance impact
+        if (_currentTick - _activeTendril._lastUpdateTime < 0.033) return;
+        _activeTendril._lastUpdateTime = _currentTick;
+        
         const _newWaypoints = [];
         const _resolution = 50;
         for (let i = 0; i < _resolution; i++) {
@@ -1866,6 +1879,7 @@
     }
 
     function _syncDimensions() {
+        if (!_viewportElement) return;
         const _w = _viewportElement.clientWidth;
         const _h = _viewportElement.clientHeight;
         _mainLens.aspect = _w / _h;
@@ -1875,18 +1889,22 @@
 
     function _renderCycle() {
         requestAnimationFrame(_renderCycle);
+        if (!_shouldInitAboutScene || !_primeScene) return;
+        
         const _elapsedTime = _temporalFlow.getElapsedTime();
 
         // Animate the Nexus Constellation (Engineering)
-        const _rawCoords = _nexusPoints.geometry.attributes.position.array;
-        for (let i = 0; i < _rawCoords.length; i += 3) {
-            const _yVal = _rawCoords[i+1];
-            const _zVal = _rawCoords[i+2];
-            _rawCoords[i] += Math.sin(_elapsedTime * 0.5 + _yVal) * 0.003;
-            _rawCoords[i+2] += Math.cos(_elapsedTime * 0.5 + _zVal) * 0.003;
+        if (_nexusPoints) {
+            const _rawCoords = _nexusPoints.geometry.attributes.position.array;
+            for (let i = 0; i < _rawCoords.length; i += 3) {
+                const _yVal = _rawCoords[i+1];
+                const _zVal = _rawCoords[i+2];
+                _rawCoords[i] += Math.sin(_elapsedTime * 0.5 + _yVal) * 0.003;
+                _rawCoords[i+2] += Math.cos(_elapsedTime * 0.5 + _zVal) * 0.003;
+            }
+            _nexusPoints.geometry.attributes.position.needsUpdate = true;
+            _nexusPoints.rotation.y += 0.0015;
         }
-        _nexusPoints.geometry.attributes.position.needsUpdate = true;
-        _nexusPoints.rotation.y += 0.0015;
 
         // Animate Fluid Tendrils (Artistry)
         _fluidTendrils.forEach(_t => _evolveTendril(_t, _elapsedTime));
@@ -1898,6 +1916,5 @@
 
     </script>
 </body>
-
 
 </html>
