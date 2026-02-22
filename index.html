@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1155,33 +1154,20 @@
         }
 
                    /* HEAVY animation */
-
-        #matrix-stage {
+        /* Renamed container with requested background color */
+        .botanical-viewport {
             position: relative;
             width: 100%;
-            height: 100%;
-            background-color: var(--dark);
+            height: 100%; 
+            background-color: #0A0908; 
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
-        #gl-viewport {
+        /* Renamed canvas element */
+        #natureScene {
+            display: block;
             width: 100%;
             height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .atmospheric-noise {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0.08;
-            pointer-events: none;
-            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-            z-index: 2;
         }
 
     </style>
@@ -1400,9 +1386,8 @@
                 </div>
             </div>
             <div class="about-image">
-                <div id="matrix-stage">
-                    <div class="atmospheric-noise"></div>
-                    <div id="gl-viewport"></div>
+                 <div class="botanical-viewport" id="sceneWrapper">
+                    <canvas id="natureScene"></canvas>
                 </div>
             </div>
         </div>
@@ -1724,136 +1709,177 @@
         document.addEventListener('DOMContentLoaded', rbpuRunAnimation);
 
 
-         let _primeScene, _mainLens, _drawEngine, _nexusPoints, _temporalFlow;
-    const _viewportElement = document.getElementById('gl-viewport');
-    const _fluidTendrils = [];
 
-    function _initArchitecture() {
-        _primeScene = new THREE.Scene();
-        _temporalFlow = new THREE.Clock();
-        
-        // Lens configuration for high-fidelity perspective
-        _mainLens = new THREE.PerspectiveCamera(45, _viewportElement.clientWidth / _viewportElement.clientHeight, 0.1, 1000);
-        _mainLens.position.z = 7;
 
-        _drawEngine = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        _drawEngine.setSize(_viewportElement.clientWidth, _viewportElement.clientHeight);
-        _drawEngine.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        _viewportElement.appendChild(_drawEngine.domElement);
 
-        // Illuminating the structure
-        const _radiantNode = new THREE.PointLight(0xC4A57B, 1.8, 20);
-        _radiantNode.position.set(5, 5, 5);
-        _primeScene.add(_radiantNode);
 
-        const _softAmbiance = new THREE.AmbientLight(0xffffff, 0.2);
-        _primeScene.add(_softAmbiance);
+         // About
+         const sceneCanvas = document.getElementById('natureScene');
+        const drawContext = sceneCanvas.getContext('2d');
+        const mainWrapper = document.getElementById('sceneWrapper');
 
-        // ENGINEERING CORE: The Nexus Constellation
-        const _nodeCount = window.innerWidth <= 768 ? 200 : 500;
-        const _constellationGeometry = new THREE.BufferGeometry();
-        const _coordinateMap = new Float32Array(_nodeCount * 3);
+        // Original Color Palette maintained
+        const blossomColors = ['#E8DCC4', '#9B8B7E', '#F5F1E8', '#C4A57B'];
+        const coreShadow = '#0A0908'; 
 
-        for (let i = 0; i < _nodeCount; i++) {
-            const _radius = 2.8;
-            const _zenith = Math.acos(THREE.MathUtils.randFloat(-1, 1));
-            const _azimuth = THREE.MathUtils.randFloat(0, Math.PI * 2);
+        let sceneWidth, sceneHeight;
+        let botanicalElements = [];
+        const elementLimit = 75; 
 
-            _coordinateMap[i * 3] = _radius * Math.sin(_zenith) * Math.cos(_azimuth);
-            _coordinateMap[i * 3 + 1] = _radius * Math.sin(_zenith) * Math.sin(_azimuth);
-            _coordinateMap[i * 3 + 2] = _radius * Math.cos(_zenith);
-        }
+        // Interaction state
+        let pointer = { x: -1000, y: -1000, reach: 100 };
 
-        _constellationGeometry.setAttribute('position', new THREE.BufferAttribute(_coordinateMap, 3));
-        const _pointAesthetic = new THREE.PointsMaterial({
-            color: 0xC4A57B, 
-            size: 0.025,
-            transparent: true,
-            opacity: 0.7
-        });
-        _nexusPoints = new THREE.Points(_constellationGeometry, _pointAesthetic);
-        _primeScene.add(_nexusPoints);
-
-        // ARTISTRY LAYER: Flowing Silk Vectors
-        _forgeFlowVectors();
-
-        window.addEventListener('resize', _syncDimensions);
-        _renderCycle();
-    }
-
-    function _forgeFlowVectors() {
-        const _vectorStreams = 2;
-        const _chromaPalette = [0xF5F1E8, 0x9B8B7E]; 
-
-        for (let i = 0; i < _vectorStreams; i++) {
-            const _pathWaypoints = [];
-            for (let j = 0; j < 50; j++) {
-                _pathWaypoints.push(new THREE.Vector3(0, 0, 0));
+        class ForestElement {
+            constructor() {
+                this.spawn();
+                // Randomize initial Y to distribute across screen on load
+                this.y = Math.random() * sceneHeight; 
             }
-            const _splineCurve = new THREE.CatmullRomCurve3(_pathWaypoints);
-            const _volumeGeometry = new THREE.TubeGeometry(_splineCurve, 64, 0.015, 8, false);
-            const _surfaceMaterial = new THREE.MeshPhongMaterial({ 
-                color: _chromaPalette[i],
-                emissive: _chromaPalette[i],
-                emissiveIntensity: 0.4,
-                transparent: true,
-                opacity: 0.8
+
+            spawn() {
+                this.x = Math.random() * sceneWidth;
+                this.y = sceneHeight + Math.random() * 100;
+                this.magnitude = Math.random() * 6 + 2;
+                this.tint = blossomColors[Math.floor(Math.random() * blossomColors.length)];
+                
+                // Categorize visuals
+                const variety = Math.random();
+                if (variety < 0.15) this.category = 'bloom';      
+                else if (variety < 0.60) this.category = 'leaf';  
+                else this.category = 'dust';                      
+
+                // Physics logic
+                this.driftX = (Math.random() - 0.5) * 0.3;
+                this.driftY = Math.random() * 0.8 + 0.2;   
+                
+                // Rotational and fluid motion
+                this.rotation = Math.random() * Math.PI * 2;
+                this.torque = (Math.random() - 0.5) * 0.02;
+                this.waveOffset = Math.random() * Math.PI * 2;
+                this.waveFrequency = Math.random() * 0.01 + 0.005;
+                
+                this.petalCount = Math.floor(Math.random() * 3) + 4; 
+                this.alpha = Math.random() * 0.5 + 0.3;
+            }
+
+            refresh(currentTime) {
+                // Vertical progression
+                this.y -= this.driftY;
+                
+                // Horizontal oscillation
+                this.x += Math.sin(currentTime * this.waveFrequency + this.waveOffset) * 0.8 + this.driftX;
+                
+                // Angular progression
+                this.rotation += this.torque;
+
+                // Pointer influence
+                const diffX = pointer.x - this.x;
+                const diffY = pointer.y - this.y;
+                const dist = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                if (dist < pointer.reach) {
+                    const impact = (pointer.reach - dist) / pointer.reach;
+                    this.x -= diffX * impact * 0.03;
+                    this.y -= diffY * impact * 0.03;
+                }
+
+                // Recycle when boundary exceeded
+                if (this.y < -50 || this.x < -50 || this.x > sceneWidth + 50) {
+                    this.spawn();
+                }
+            }
+
+            render() {
+                drawContext.save();
+                drawContext.translate(this.x, this.y);
+                drawContext.rotate(this.rotation);
+                
+                drawContext.globalAlpha = this.alpha;
+                drawContext.fillStyle = this.tint;
+
+                if (this.category === 'bloom') {
+                    for (let i = 0; i < this.petalCount; i++) {
+                        drawContext.rotate((Math.PI * 2) / this.petalCount);
+                        drawContext.beginPath();
+                        drawContext.ellipse(this.magnitude, 0, this.magnitude, this.magnitude / 2.5, 0, 0, Math.PI * 2);
+                        drawContext.fill();
+                    }
+                    drawContext.globalAlpha = this.alpha * 1.5;
+                    drawContext.fillStyle = coreShadow; 
+                    drawContext.beginPath();
+                    drawContext.arc(0, 0, this.magnitude / 2, 0, Math.PI * 2);
+                    drawContext.fill();
+
+                } else if (this.category === 'leaf') {
+                    drawContext.beginPath();
+                    drawContext.ellipse(0, 0, this.magnitude * 1.5, this.magnitude / 2, 0, 0, Math.PI * 2);
+                    drawContext.fill();
+
+                } else {
+                    drawContext.beginPath();
+                    drawContext.arc(0, 0, this.magnitude / 2, 0, Math.PI * 2);
+                    drawContext.fill();
+                }
+
+                drawContext.restore();
+            }
+        }
+
+        function handleResize() {
+            sceneWidth = mainWrapper.offsetWidth;
+            sceneHeight = mainWrapper.offsetHeight;
+            sceneCanvas.width = sceneWidth;
+            sceneCanvas.height = sceneHeight;
+        }
+
+        function buildScene() {
+            botanicalElements = [];
+            for (let i = 0; i < elementLimit; i++) {
+                botanicalElements.push(new ForestElement());
+            }
+        }
+
+        function runAnimationLoop(timestamp) {
+            drawContext.clearRect(0, 0, sceneWidth, sceneHeight);
+
+            botanicalElements.forEach(item => {
+                item.refresh(timestamp);
+                item.render();
             });
-            const _vectorMesh = new THREE.Mesh(_volumeGeometry, _surfaceMaterial);
-            _primeScene.add(_vectorMesh);
-            _fluidTendrils.push({ _shell: _vectorMesh, _phaseShift: i * Math.PI });
+
+            requestAnimationFrame(runAnimationLoop);
         }
-    }
 
-    function _evolveTendril(_activeTendril, _currentTick) {
-        const _newWaypoints = [];
-        const _resolution = 50;
-        for (let i = 0; i < _resolution; i++) {
-            const _progress = i / _resolution;
-            const _orbitalAngle = _progress * Math.PI * 2 + (_currentTick * 0.8) + _activeTendril._phaseShift;
-            const _posX = Math.sin(_orbitalAngle) * 3.2 * Math.cos(_currentTick * 0.3 + _activeTendril._phaseShift);
-            const _posY = Math.cos(_orbitalAngle) * 3.2;
-            const _posZ = Math.sin(_currentTick * 0.6 + _orbitalAngle) * 2.5;
-            _newWaypoints.push(new THREE.Vector3(_posX, _posY, _posZ));
-        }
-        const _refinedSpline = new THREE.CatmullRomCurve3(_newWaypoints);
-        _activeTendril._shell.geometry.dispose();
-        _activeTendril._shell.geometry = new THREE.TubeGeometry(_refinedSpline, 64, 0.012, 8, false);
-    }
+        // --- Interaction Listeners ---
+        window.addEventListener('resize', handleResize);
 
-    function _syncDimensions() {
-        const _w = _viewportElement.clientWidth;
-        const _h = _viewportElement.clientHeight;
-        _mainLens.aspect = _w / _h;
-        _mainLens.updateProjectionMatrix();
-        _drawEngine.setSize(_w, _h);
-    }
+        mainWrapper.addEventListener('mousemove', (event) => {
+            const bounds = sceneCanvas.getBoundingClientRect();
+            pointer.x = event.clientX - bounds.left;
+            pointer.y = event.clientY - bounds.top;
+        });
 
-    function _renderCycle() {
-        requestAnimationFrame(_renderCycle);
-        const _elapsedTime = _temporalFlow.getElapsedTime();
+        mainWrapper.addEventListener('mouseleave', () => {
+            pointer.x = -1000;
+            pointer.y = -1000;
+        });
 
-        // Animate the Nexus Constellation (Engineering)
-        const _rawCoords = _nexusPoints.geometry.attributes.position.array;
-        for (let i = 0; i < _rawCoords.length; i += 3) {
-            const _yVal = _rawCoords[i+1];
-            const _zVal = _rawCoords[i+2];
-            _rawCoords[i] += Math.sin(_elapsedTime * 0.5 + _yVal) * 0.003;
-            _rawCoords[i+2] += Math.cos(_elapsedTime * 0.5 + _zVal) * 0.003;
-        }
-        _nexusPoints.geometry.attributes.position.needsUpdate = true;
-        _nexusPoints.rotation.y += 0.0015;
+        mainWrapper.addEventListener('touchstart', (event) => {
+            const bounds = sceneCanvas.getBoundingClientRect();
+            pointer.x = event.touches[0].clientX - bounds.left;
+            pointer.y = event.touches[0].clientY - bounds.top;
+        });
 
-        // Animate Fluid Tendrils (Artistry)
-        _fluidTendrils.forEach(_t => _evolveTendril(_t, _elapsedTime));
+        mainWrapper.addEventListener('touchend', () => {
+            pointer.x = -1000;
+            pointer.y = -1000;
+        });
 
-        _drawEngine.render(_primeScene, _mainLens);
-    }
-
-    window.onload = _initArchitecture;
-
+        // Bootstrap
+        handleResize();
+        buildScene();
+        requestAnimationFrame(runAnimationLoop);
     </script>
 </body>
-
 
 </html>
