@@ -1750,7 +1750,7 @@
         _primeScene.add(_softAmbiance);
 
         // ENGINEERING CORE: The Nexus Constellation
-        const _nodeCount = 500;
+        const _nodeCount = window.innerWidth <= 768 ? 200 : 500;
         const _constellationGeometry = new THREE.BufferGeometry();
         const _coordinateMap = new Float32Array(_nodeCount * 3);
 
@@ -1854,5 +1854,6 @@
 
     </script>
 </body>
+
 
 </html>
