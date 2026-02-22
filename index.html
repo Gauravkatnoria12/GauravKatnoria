@@ -1149,7 +1149,7 @@
         }
 
         .workimg-top {
-            color: rgb(31, 27, 22);
+            color: rgba(31, 27, 22, 0.833);
             position: absolute; 
             font-size: clamp(0.5rem, 1rem, 2rem);
         }
@@ -1476,47 +1476,7 @@
             });
         }
 
-        // Enhanced Custom Cursor
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-
-        if (cursorDot && cursorOutline) {
-            let mouseX = 0, mouseY = 0;
-            let dotX = 0, dotY = 0;
-            let outlineX = 0, outlineY = 0;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-
-            function animateCursor() {
-                const speed = 0.2;
-                const outlineSpeed = 0.08;
-
-                dotX += (mouseX - dotX) * speed;
-                dotY += (mouseY - dotY) * speed;
-                outlineX += (mouseX - outlineX) * outlineSpeed;
-                outlineY += (mouseY - outlineY) * outlineSpeed;
-
-                cursorDot.style.transform = `translate(${dotX}px, ${dotY}px)`;
-                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
-
-                requestAnimationFrame(animateCursor);
-            }
-            animateCursor();
-
-            // Cursor interactions
-            const interactiveElements = document.querySelectorAll('a, button, .work-image');
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursorOutline.classList.add('active');
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursorOutline.classList.remove('active');
-                });
-            });
-        }
+        
 
         // Advanced Three.js Scene
         const container = document.getElementById('webgl-container');
@@ -1613,7 +1573,7 @@
                 particlesMesh.rotation.x += 0.0001;
 
                 // Scroll effect
-                camera.position.y = -(scrollY * 0.001);
+                
 
                 renderer.render(scene, camera);
             }
